@@ -237,6 +237,18 @@ function astToMetaModel(ast) {
     return metamodel;
 }
 
+/*
+ * Create a CTO string from a metamodel
+ * @param {object} mm - the metamodel
+ * @return {string} the CTO string
+ */
+function metaModelToCto(mm) {
+    let result = '';
+    result += `namespace ${mm.namespace}`;
+    return result;
+}
+
 module.exports = {
     astToMetaModel,
+    metaModelToCto,
 };
