@@ -134,6 +134,16 @@ class Commands {
     static async compile(target, ctoFiles, output, options) {
         const modelManager = await ModelLoader.loadModelManager(ctoFiles, options);
 
+        // XXX temporary
+        if (target === 'metamodel') {
+            const modelFiles = modelManager.getModelFiles();
+            // XXX Pick first model, usually the main one
+            const lastModelFile = modelFiles[0];
+            const metamodel = lastModelFile.toMetaModel();
+            // XXX Log here for now
+            return JSON.stringify(metamodel);
+        }
+
         let visitor = null;
 
         switch(target) {
@@ -165,8 +175,7 @@ class Commands {
             parameters.fileWriter = new FileWriter(output);
             modelManager.accept(visitor, parameters);
             return `Compiled to ${target} in '${output}'.`;
-        }
-        else {
+        } else {
             return 'Unrecognized target: ' + target;
         }
     }

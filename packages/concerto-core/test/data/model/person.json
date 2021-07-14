@@ -1,0 +1,224 @@
+{
+  "$class": "concerto.metamodel.ModelFile",
+  "namespace": "meta",
+  "imports": [
+    {
+      "$class": "concerto.metamodel.NamespaceImport",
+      "namespace": "org.accordproject.time.*",
+      "uri": "https://models.accordproject.org/time@0.2.0.cto"
+    }, 
+    {
+      "$class": "concerto.metamodel.NamespaceImport",
+      "namespace": "concerto.Concept"
+    }, 
+    {
+      "$class": "concerto.metamodel.NamespaceImport",
+      "namespace": "concerto.Asset"
+    }, 
+    {
+      "$class": "concerto.metamodel.NamespaceImport",
+      "namespace": "concerto.Transaction"
+    }, 
+    {
+      "$class": "concerto.metamodel.NamespaceImport",
+      "namespace": "concerto.Participant"
+    }, 
+    {
+      "$class": "concerto.metamodel.NamespaceImport",
+      "namespace": "concerto.Event"
+    }
+  ],
+  "declarations": [
+    {
+      "$class": "concerto.metamodel.EnumDeclaration",
+      "name": "Gender",
+      "isAbstract": false,
+      "fields": [
+        {
+          "$class": "concerto.metamodel.EnumFieldDeclaration",
+          "name": "MALE",
+          "isArray": false,
+          "isOptional": false
+        }, 
+        {
+          "$class": "concerto.metamodel.EnumFieldDeclaration",
+          "name": "FEMALE",
+          "isArray": false,
+          "isOptional": false
+        }, 
+        {
+          "$class": "concerto.metamodel.EnumFieldDeclaration",
+          "name": "OTHER",
+          "isArray": false,
+          "isOptional": false
+        }
+      ]
+    }, 
+    {
+      "$class": "concerto.metamodel.ParticipantDeclaration",
+      "name": "Individual",
+      "isAbstract": true,
+      "superType": {
+        "$class": "concerto.metamodel.TypeIdentifier",
+        "name": "Participant"
+      },
+      "fields": []
+    }, 
+    {
+      "$class": "concerto.metamodel.ParticipantDeclaration",
+      "name": "Person",
+      "isAbstract": false,
+      "superType": {
+        "$class": "concerto.metamodel.TypeIdentifier",
+        "name": "Individual"
+      },
+      "fields": [
+        {
+          "name": "firstName",
+          "isArray": false,
+          "isOptional": false,
+          "$class": "concerto.metamodel.StringFieldDeclaration"
+        }, 
+        {
+          "name": "lastName",
+          "isArray": false,
+          "isOptional": false,
+          "$class": "concerto.metamodel.StringFieldDeclaration"
+        }, 
+        {
+          "name": "address",
+          "isArray": false,
+          "isOptional": false,
+          "$class": "concerto.metamodel.ObjectFieldDeclaration",
+          "type": {
+            "$class": "concerto.metamodel.TypeIdentifier",
+            "name": "Address"
+          }
+        }, 
+        {
+          "$class": "concerto.metamodel.RelationshipDeclaration",
+          "type": {
+            "$class": "concerto.metamodel.TypeIdentifier",
+            "name": "Address"
+          },
+          "name": "address2",
+          "isArray": false,
+          "isOptional": false
+        }, 
+        {
+          "$class": "concerto.metamodel.RelationshipDeclaration",
+          "type": {
+            "$class": "concerto.metamodel.TypeIdentifier",
+            "name": "Address"
+          },
+          "name": "address3",
+          "isArray": true,
+          "isOptional": false
+        }, 
+        {
+          "name": "gender",
+          "isArray": false,
+          "isOptional": false,
+          "$class": "concerto.metamodel.ObjectFieldDeclaration",
+          "type": {
+            "$class": "concerto.metamodel.TypeIdentifier",
+            "name": "Gender"
+          }
+        }, 
+        {
+          "name": "dob",
+          "isArray": false,
+          "isOptional": true,
+          "$class": "concerto.metamodel.DateTimeFieldDeclaration"
+        }
+      ]
+    }, 
+    {
+      "$class": "concerto.metamodel.ParticipantDeclaration",
+      "name": "Employee",
+      "isAbstract": false,
+      "superType": {
+        "$class": "concerto.metamodel.TypeIdentifier",
+        "name": "Person"
+      },
+      "fields": [
+        {
+          "name": "company",
+          "isArray": false,
+          "isOptional": false,
+          "$class": "concerto.metamodel.StringFieldDeclaration"
+        }, 
+        {
+          "name": "onLeave",
+          "isArray": false,
+          "isOptional": false,
+          "$class": "concerto.metamodel.BooleanFieldDeclaration"
+        }
+      ]
+    }, 
+    {
+      "$class": "concerto.metamodel.ConceptDeclaration",
+      "name": "Address",
+      "isAbstract": false,
+      "identifiedByField": "$identifier",
+      "fields": [
+        {
+          "name": "zip",
+          "isArray": false,
+          "isOptional": false,
+          "$class": "concerto.metamodel.IntegerFieldDeclaration"
+        }, 
+        {
+          "name": "zip2",
+          "isArray": false,
+          "isOptional": false,
+          "$class": "concerto.metamodel.LongFieldDeclaration"
+        }, 
+        {
+          "name": "zip3",
+          "isArray": false,
+          "isOptional": false,
+          "$class": "concerto.metamodel.DoubleFieldDeclaration"
+        }, 
+        {
+          "name": "city",
+          "isArray": false,
+          "isOptional": false,
+          "$class": "concerto.metamodel.StringFieldDeclaration"
+        }, 
+        {
+          "name": "country",
+          "isArray": false,
+          "isOptional": false,
+          "$class": "concerto.metamodel.StringFieldDeclaration"
+        }, 
+        {
+          "name": "street",
+          "isArray": true,
+          "isOptional": false,
+          "$class": "concerto.metamodel.StringFieldDeclaration"
+        }
+      ]
+    }, 
+    {
+      "$class": "concerto.metamodel.AssetDeclaration",
+      "name": "A",
+      "isAbstract": false,
+      "superType": {
+        "$class": "concerto.metamodel.TypeIdentifier",
+        "name": "Asset"
+      },
+      "fields": []
+    }, 
+    {
+      "$class": "concerto.metamodel.EventDeclaration",
+      "name": "E",
+      "isAbstract": false,
+      "superType": {
+        "$class": "concerto.metamodel.TypeIdentifier",
+        "name": "Event"
+      },
+      "fields": []
+    }
+  ]
+}
